@@ -3,24 +3,24 @@
 [![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/E1679)
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
-<!-- default file list -->
 
+# How to implement a custom attribute to customize the Application Model
 
+This example demonstrates how to create a custom attribute and remove a property from the [Application Model](https://docs.devexpress.com/eXpressAppFramework/112579/ui-construction/application-model-ui-settings-storage)'s DetailView.Items and ListView.Columns node.
+In this case, the properties marked with this attribute will be removed from views.
 
+## Implementation Details
+
+To implement this functionality, the <strong>IModelMember</strong> interface is extended with the <strong>IRemovedFromViewInfo</strong> interface that contains a single property - <strong>IsRemovedFromViewInfo</strong>. The value of this property is calculated based on the value of the custom attribute we created (<strong>RemoveFromViewInfoAttribute</strong>) and applied to the persistent class. This is done via the domain logic (<strong>RemovedFromViewInfoLogic</strong>). Then the IRemovedFromViewInfo.IsRemovedFromViewInfo property is used by the model nodes generator updater (<strong>ViewsNodesGeneratorUpdater</strong>) to remove certain view items and columns from detail and list views. Thus, the example demonstrates three techniques: extending the Application Model with additional properties, defining default model values via the domain logic and changing the default model via the model nodes generator updater. 
 
 ## Files to Review
 
-* [DomainObject1.cs](./CS/DXExample.Module/DomainObject1.cs) (VB: [DomainObject1.vb](./VB/DXExample.Module/DomainObject1.vb))
-* **[Module.cs](CS/CustomAttributeSolution/CustomAttributeSolution.Module/Module.cs)**
-* [RemoveFromViewInfoAttribute.cs](CS/CustomAttributeSolution/CustomAttributeSolution.Module/RemoveFromViewInfoAttribute.cs)
-<!-- default file list end -->
-# How to implement a custom attribute to customize the Application Model
+- [Contact.cs](CS/CustomAttributeSolution/CustomAttributeSolution.Module/BusinessObjects/Contact.cs)
+- **[Module.cs](CS/CustomAttributeSolution/CustomAttributeSolution.Module/Module.cs)**
+- [RemoveFromViewInfoAttribute.cs](CS/CustomAttributeSolution/CustomAttributeSolution.Module/RemoveFromViewInfoAttribute.cs)
 
 
-<p>This example demonstrates how to use a custom attribute to remove properties from the DetailView.Items and ListView.Columns node. In this case, properties will be removed from the Column Chooser and Layout Customization window, and the user will be able to add them only by using the Add button, placed to these windows in Windows Forms applications.<br />
-To implement this functionality, the <strong>IModelMember</strong> interface is extended with the <strong>IRemovedFromViewInfo</strong> interface that contains a single property - <strong>IsRemovedFromViewInfo</strong>. The value of this property is calculated based on the value of the custom attribute (<strong>RemoveFromViewInfoAttribute</strong>) applied to the persistent class. This is done via the domain logic (<strong>RemovedFromViewInfoLogic</strong>). Then the IRemovedFromViewInfo.IsRemovedFromViewInfo property is used by the model nodes generator updater (<strong>ViewsNodesGeneratorUpdater</strong>) to remove certain view items and columns from detail and list views. Thus, the example demonstrates three techniques: extending the Application Model with additional properties, defining default model values via the domain logic and changing the default model via the model nodes generator updater. You can find more information about these techniques in the <a href="https://www.devexpress.com/Support/Center/p/K18252">How to customize the Application Model from the code of the business class</a> article.</p><p><strong>See al</strong><strong>so:</strong><br />
-<a href="https://docs.devexpress.com/eXpressAppFramework/403527/ui-construction/application-model-ui-settings-storage/change-application-model">Change the Application Model</a></p>
+## Documentation 
 
-<br/>
-
-
+[Create Additional ListView Nodes in Code Using a Generator Updater](https://docs.devexpress.com/eXpressAppFramework/113315/ui-construction/application-model-ui-settings-storage/customize-application-model-in-code/create-additional-list-view-nodes-in-code-using-a-generator-updater)
+[Add Custom Nodes and Properties to the Application Model in Code](https://docs.devexpress.com/eXpressAppFramework/404125/ui-construction/application-model-ui-settings-storage/modify-application-model/add-nodes-and-node-properties-to-app-model)
